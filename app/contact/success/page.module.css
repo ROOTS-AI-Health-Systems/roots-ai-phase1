@@ -1,0 +1,257 @@
+/* app/contact/success/page.module.css */
+.main {
+  background-color: #FAFAF8;
+}
+
+.sectionContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .sectionContainer {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionContainer {
+    padding: 0 40px;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  color: #2A4060;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A2A4A;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionTitle {
+    font-size: 30px;
+  }
+}
+
+/* Buttons */
+.btnPrimary {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #1A2A4A;
+  color: #FFFFFF;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: opacity 0.2s;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btnPrimary:hover {
+  opacity: 0.9;
+}
+
+.btnOutline {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #FFFFFF;
+  color: #1A2A4A;
+  border: 2px solid #1A2A4A;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 0.2s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btnOutline:hover {
+  background: #F3F5F8;
+}
+
+/* Success Section */
+.success {
+  background: #F3F5F8;
+  padding: 48px 16px 56px;
+}
+
+@media (min-width: 768px) {
+  .success {
+    padding: 56px 24px 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .success {
+    padding: 64px 40px 72px;
+  }
+}
+
+.successInner {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.checkmarkCircle {
+  width: 56px;
+  height: 56px;
+  background: #1A2A4A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.checkmark {
+  width: 24px;
+  height: 24px;
+}
+
+.successTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1A2A4A;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .successTitle {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .successTitle {
+    font-size: 30px;
+  }
+}
+
+/* Reference Box */
+.referenceBox {
+  margin-top: 8px;
+}
+
+.referenceLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A2A4A;
+  margin-bottom: 8px;
+}
+
+.referenceId {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #FFFFFF;
+  border: 1px solid #D8DEE8;
+  border-radius: 9px;
+  min-width: 200px;
+}
+
+.monoText {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 14px;
+  color: #1A1A1A;
+}
+
+/* Next Steps */
+.nextSteps {
+  padding: 48px 0;
+  background: #FAFAF8;
+}
+
+.nextStepsDescription {
+  font-size: 16px;
+  color: #1A1A1A;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+/* Actions */
+.actions {
+  padding: 48px 0;
+  background: #EEF2F6;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 1024px;
+}
+
+@media (min-width: 640px) {
+  .actionButtons {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 639px) {
+  .successTitle {
+    font-size: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+  }
+
+  .checkmarkCircle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btnPrimary,
+  .btnOutline {
+    width: 100%;
+    text-align: center;
+  }
+
+  .referenceId {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .monoText {
+    font-size: 13px;
+  }
+
+  .nextStepsDescription {
+    font-size: 15px;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .actionButtons {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,181 @@
+// app/page.tsx
+import Link from 'next/link';
+import styles from './page.module.css';
+
+export default function Home() {
+  return (
+    <main id="main" className={styles.main}>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <h1 className={styles.heroTitle}>
+            Decode the Biology
+            <br />
+            Before You Fight the Weight
+          </h1>
+          <p className={styles.heroSubtitle}>
+            ROOTS-AI™ turns a structured assessment into a governed biological intelligence report—
+            <br />
+            helping you understand patterns in metabolism, hunger, sleep, circadian timing,
+            <br />
+            stress, inflammation-related signals and perceived biological resistance.
+          </p>
+          <div className={styles.heroButtons}>
+            <Link href="/assessment" className={styles.btnPrimary}>
+              Start Your Assessment
+            </Link>
+            <Link href="/example-report" className={styles.btnSecondary}>
+              View Example Report
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className={styles.trust}>
+        <div className={styles.trustInner}>
+          <span>Educational, not diagnostic</span>
+          <span>Private by design</span>
+          <span>Deterministic scoring</span>
+          <span>AI assists with explanation, not calculation</span>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className={styles.features}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>What You Get</h2>
+          <div className={styles.featureList}>
+            <div className={styles.featureItem}>
+              <p>Beyond a number on the scale — see the pattern behind the struggle.</p>
+            </div>
+            <div className={styles.featureItem}>
+              <p>Seven biological domains — one connected view.</p>
+            </div>
+            <div className={styles.featureItem}>
+              <p>Deterministic scores — AI assists with explanation, not calculation.</p>
+            </div>
+            <div className={styles.featureItem}>
+              <p>Your report — 19 transparent sections with your answers and limitations.</p>
+            </div>
+            <div className={styles.featureItem}>
+              <p>Private by design — controlled access, versioning and audit.</p>
+            </div>
+            <div className={styles.featureItem}>
+              <p>
+                Educational, not diagnostic —<br />
+                designed to support informed conversations and realistic next steps.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Domains */}
+      <section className={styles.domains}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>Seven Connected Domains</h2>
+          <p className={styles.sectionSubtitle}>
+            Your biology is interconnected. Understanding each domain helps reveal the full picture.
+          </p>
+          <div className={styles.domainGrid}>
+            <div className={styles.domainCard}>
+              <h3>Metabolic Resistance™</h3>
+              <p>Self-reported resistance to expected weight change and activity-related metabolic context.</p>
+            </div>
+            <div className={styles.domainCard}>
+              <h3>Hunger &amp; Satiety Signals™</h3>
+              <p>Hunger, craving, fullness and post-meal response patterns.</p>
+            </div>
+            <div className={styles.domainCard}>
+              <h3>Sleep Recovery Index™</h3>
+              <p>Sleep duration, continuity and perceived restoration.</p>
+            </div>
+            <div className={styles.domainCard}>
+              <h3>Circadian Health Score™</h3>
+              <p>Alignment of light, screen, meal and sleep timing.</p>
+            </div>
+            <div className={styles.domainCard}>
+              <h3>Stress Load™</h3>
+              <p>Perceived tension, cognitive activation and stress-linked eating.</p>
+            </div>
+            <div className={styles.domainCard}>
+              <h3>Inflammation Burden Index™</h3>
+              <p>Non-specific symptom burden; not a laboratory or clinical inflammation measure.</p>
+            </div>
+            <div className={styles.domainCard}>
+              <h3>Biological Safety Signals™</h3>
+              <p>Perceived energy, appetite drive and resistance signals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className={styles.howItWorks}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>From Answers to Biological Intelligence</h2>
+          <p className={styles.sectionSubtitle}>
+            ROOTS-AI™ follows a controlled sequence so that interpretation never replaces the underlying data.
+          </p>
+          <div className={styles.stepGrid}>
+            <div className={styles.stepCard}>
+              <span className={styles.stepNumber}>1</span>
+              <h3>Complete the 73-question assessment.</h3>
+              <p>Validation normalizes approved responses and preserves N/A.</p>
+            </div>
+            <div className={styles.stepCard}>
+              <span className={styles.stepNumber}>2</span>
+              <h3>Deterministic rules calculate seven domains and derived indicators.</h3>
+              <p>Rules select drivers, confidence and eligible content.</p>
+            </div>
+            <div className={styles.stepCard}>
+              <span className={styles.stepNumber}>3</span>
+              <h3>Governed AI turns approved explanation objects into clear language.</h3>
+            </div>
+            <div className={styles.stepCard}>
+              <span className={styles.stepNumber}>4</span>
+              <h3>The web and PDF reports render from the same immutable report record.</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Example Report */}
+      <section className={styles.exampleReport}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>See What Your Biological Report Looks Like</h2>
+          <div className={styles.reportPreview}>
+            <h3>Sample Report Preview</h3>
+            <p>ROOTS Biological State™: 61/100 — Strained.</p>
+            <p>Key Drivers: Stress Load, Sleep Recovery and Metabolic Resistance.</p>
+            <p className={styles.previewDisclaimer}>
+              This is a questionnaire summary, not a medical risk probability.
+            </p>
+            <p className={styles.previewDisclaimer}>
+              The example does not represent a real person or a clinical result.
+            </p>
+            <Link href="/example-report" className={styles.btnPrimary}>
+              View Example Report
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Beta */}
+      <section className={styles.beta}>
+        <div className={styles.sectionContainer}>
+          <h2 className={styles.sectionTitle}>Join the ROOTS-AI™ Free Beta</h2>
+          <p className={styles.sectionSubtitle}>
+            The beta explores whether a structured, non-diagnostic assessment can help you understand
+            <br />
+            self-reported patterns involving weight resistance, energy, sleep, stress and appetite.
+          </p>
+          <Link href="/pilot" className={styles.btnPrimary}>
+            Check Eligibility
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}

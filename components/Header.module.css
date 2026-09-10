@@ -1,0 +1,327 @@
+/* components/Header.module.css
+ *
+ * PUB01-Z01. Sizes from PUB-01_1440_MASTER.svg / PUB-01_360_MASTER.svg; colours,
+ * radius, shadow, focus ring, z-index and motion from app/zd-tokens.css.
+ * Breakpoints: menu control below 1024 (responsive rules, 768: "wordmark left,
+ * approved menu control right"), desktop navigation from 1024.
+ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--zd-z-header);
+  height: var(--zd-header-height);
+  background: var(--zd-navy);
+  transition: box-shadow var(--zd-motion-fast) ease-out;
+}
+
+.header[data-stuck='true'] {
+  box-shadow: var(--zd-shadow-dropdown);
+}
+
+/* Same content column as the page: 328 / 704 / 928 / 1200. */
+.inner {
+  --pad: 16px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: calc(1200px + 2 * var(--pad));
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  border-radius: var(--zd-radius-button);
+}
+
+/* Header logo (public/brand/roots-logo-header.png): 56px tall inside the 72px band. */
+.wordmark {
+  display: block;
+  width: auto;
+  height: 56px;
+}
+
+.nav,
+.cta {
+  display: none;
+}
+
+/* 360 master: 44 x 36 outlined control; the hit area stays 44 x 44. */
+.menuButton {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--zd-radius-button);
+  background: transparent;
+  color: var(--zd-white);
+  cursor: pointer;
+}
+
+.menuButton::before {
+  content: '';
+  position: absolute;
+  inset: 4px 0;
+  border: 1px solid var(--zd-white);
+  border-radius: var(--zd-radius-button);
+  transition: background-color var(--zd-motion-fast) ease-out;
+}
+
+.menuButton:hover::before {
+  background: var(--zd-soft-navy);
+}
+
+.menuButton svg {
+  position: relative;
+}
+
+.brand:focus-visible,
+.navLink:focus-visible,
+.moreButton:focus-visible,
+.moreLink:focus-visible,
+.cta:focus-visible,
+.menuButton:focus-visible,
+.drawerLink:focus-visible {
+  outline: var(--zd-focus-ring);
+  outline-offset: var(--zd-focus-offset);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    --pad: 32px;
+  }
+}
+
+/* ------------------------------------------------------- desktop (>= 1024) */
+@media (min-width: 1024px) {
+  .inner {
+    --pad: 48px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-left: 76px;
+  }
+
+  .navLink,
+  .moreButton {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--zd-touch-target);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--zd-white);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    cursor: pointer;
+  }
+
+  .navLink:hover,
+  .navLink[aria-current='page'],
+  .moreButton:hover,
+  .moreButton[aria-expanded='true'],
+  .moreButton[data-active='true'] {
+    text-decoration-line: underline;
+  }
+
+  .cta {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .menuButton {
+    display: none;
+  }
+}
+
+/* More menu: header surface, dropdown shadow token, 44px targets. */
+.more {
+  position: relative;
+}
+
+.moreMenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  z-index: var(--zd-z-header);
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  padding: 8px;
+  border: 1px solid var(--zd-soft-navy);
+  border-radius: var(--zd-radius-button);
+  background: var(--zd-navy);
+  box-shadow: var(--zd-shadow-dropdown);
+}
+
+.moreLink {
+  display: flex;
+  align-items: center;
+  min-height: var(--zd-touch-target);
+  padding: 0 12px;
+  border-radius: var(--zd-radius-button);
+  color: var(--zd-white);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--zd-motion-fast) ease-out;
+}
+
+.moreLink:hover,
+.moreLink[aria-current='page'] {
+  background: var(--zd-soft-navy);
+}
+
+/* 1440 master: 182 x 44, radius 8, #C7A45B, 13px / 700 #1A2A4A. */
+.cta {
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: var(--zd-control-height);
+  border-radius: var(--zd-radius-button);
+  background: var(--zd-gold);
+  color: var(--zd-navy);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    box-shadow var(--zd-motion-fast) ease-out,
+    transform var(--zd-motion-fast) ease-out;
+}
+
+.cta:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--zd-shadow-dropdown);
+}
+
+.cta:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ----------------------------------------------------------- drawer (< 1024) */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--zd-z-drawer);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(26, 42, 74, 0.6);
+  cursor: pointer;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 360px);
+  padding: 0 16px 24px;
+  overflow-y: auto;
+  background: var(--zd-navy);
+  color: var(--zd-white);
+}
+
+.panelHead {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: var(--zd-header-height);
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.drawerLink {
+  display: flex;
+  align-items: center;
+  min-height: var(--zd-touch-target);
+  border-bottom: 1px solid var(--zd-soft-navy);
+  color: var(--zd-white);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-decoration: none;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.drawerLink:hover,
+.drawerLink[aria-current='page'] {
+  text-decoration-line: underline;
+}
+
+.drawerCta {
+  display: inline-flex;
+  width: 100%;
+  margin-top: 24px;
+  font-size: 15px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .drawer:not([hidden]) .panel {
+    animation: drawerIn var(--zd-motion-slow) ease-out both;
+  }
+
+  .drawer:not([hidden]) .backdrop {
+    animation: backdropIn var(--zd-motion-slow) ease-out both;
+  }
+}
+
+@keyframes drawerIn {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .cta,
+  .moreLink,
+  .menuButton::before {
+    transition: none;
+  }
+
+  .cta:hover {
+    transform: none;
+  }
+}

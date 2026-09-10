@@ -1,0 +1,121 @@
+/* components/Footer.module.css
+ *
+ * PUB01-Z09. Wordmark, disclaimer and copyright sizes and offsets from the masters
+ * (1440: wordmark 160 x 36 at 45px, disclaimer 14px, copyright 12px, 45px bottom;
+ * 360: wordmark 150 x 34 at 38px). Link groups: footer links 16/24 with 44px
+ * targets (typography spec, tokens). Two groups per row below 1024, four from 1024.
+ * Colours from app/zd-tokens.css; breakpoints 768 / 1024 only.
+ */
+
+.footer {
+  background: var(--zd-navy);
+  color: var(--zd-white);
+}
+
+.inner {
+  --pad: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: calc(1200px + 2 * var(--pad));
+  margin-inline: auto;
+  padding: 38px var(--pad) 45px;
+}
+
+.brand {
+  display: inline-flex;
+  border-radius: var(--zd-radius-button);
+}
+
+.wordmark {
+  display: block;
+  width: 150px;
+  height: 34px;
+}
+
+.disclaimer {
+  max-width: var(--zd-reading-max);
+  margin-top: 29px;
+  font-size: 14px;
+  line-height: 20.3px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.columnTitle {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.list {
+  margin-top: 8px;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--zd-touch-target);
+  color: var(--zd-white);
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.link:hover,
+.link[aria-current='page'] {
+  text-decoration-line: underline;
+}
+
+.link[aria-current='page'] {
+  font-weight: 700;
+}
+
+.copyright {
+  margin-top: 40px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.brand:focus-visible,
+.link:focus-visible {
+  outline: var(--zd-focus-ring);
+  outline-offset: var(--zd-focus-offset);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    --pad: 32px;
+  }
+
+  .wordmark {
+    width: 160px;
+    height: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    --pad: 48px;
+    padding-top: 45px;
+  }
+
+  .disclaimer {
+    margin-top: 20px;
+    line-height: 20px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(4, minmax(0, 240px));
+    column-gap: 48px;
+  }
+}

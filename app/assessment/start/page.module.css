@@ -1,0 +1,7 @@
+/* Reuses assessment/page.module.css styles */
+.main {
+  background: var(--zd-warm-white);
+  color: var(--zd-charcoal);
+  min-height: 100vh;
+}
+

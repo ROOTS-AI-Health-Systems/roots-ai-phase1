@@ -1,0 +1,153 @@
+.main {
+  background: var(--zd-warm-white);
+  color: var(--zd-charcoal);
+  min-height: 100vh;
+}
+
+.section {
+  padding: 48px 0;
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 0 24px;
+  }
+}
+
+.eyebrow {
+  display: block;
+  color: var(--zd-teal);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.title {
+  color: var(--zd-navy);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 12px;
+}
+
+.lede {
+  color: var(--zd-muted);
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 32px;
+}
+
+.progress {
+  margin-bottom: 32px;
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  color: var(--zd-muted);
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.progressTrack {
+  height: 8px;
+  background: var(--zd-gray-100);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--zd-teal);
+  transition: width 250ms ease-out;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fieldset {
+  border: 1px solid var(--zd-border);
+  border-radius: var(--zd-radius-card);
+  padding: 20px;
+  background: var(--zd-white);
+}
+
+.legend {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zd-charcoal);
+  line-height: 26px;
+  margin-bottom: 16px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--zd-border);
+  border-radius: var(--zd-radius-button);
+  background: var(--zd-white);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 26px;
+  transition: border-color 150ms ease-out, background-color 150ms ease-out;
+}
+
+.option:hover {
+  border-color: var(--zd-teal);
+  background: var(--zd-gray-100);
+}
+
+.radio {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--zd-teal);
+  cursor: pointer;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  min-width: 120px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--zd-radius-button);
+  background: var(--zd-gold);
+  color: var(--zd-navy);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease-out, transform 150ms ease-out;
+  margin-top: 16px;
+}
+
+.button:hover {
+  background: #b8934a;
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+

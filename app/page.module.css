@@ -1,0 +1,1285 @@
+/* app/page.module.css
+ *
+ * PUB-01 home. Visual authority: ROOTS-AI Design Implementation Single Source v1.2
+ *   < 768     PUB-01_360_MASTER.svg   (exact)
+ *   >= 1440   PUB-01_1440_MASTER.svg  (exact)
+ *   768/1024  PUB-01_RESPONSIVE_RULES_768_1024.md (provisional until Golden Screen approval)
+ *
+ * Pixel values are the master SVG coordinates converted to box spacing.
+ * Colours, radii, shadows, focus ring and motion durations are the approved
+ * tokens from app/zd-tokens.css. Breakpoints are the approved 768 / 1024 / 1440.
+ */
+
+.main {
+  --motion: 200ms;
+  background: var(--zd-warm-white);
+  color: var(--zd-charcoal);
+}
+
+.main :focus-visible {
+  outline: var(--zd-focus-ring);
+  outline-offset: var(--zd-focus-offset);
+}
+
+/* Content column: 328 at 360, 704 at 768, 928 at 1024, 1200 at 1440. */
+.container {
+  --pad: 16px;
+  width: 100%;
+  max-width: calc(1200px + 2 * var(--pad));
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+@media (min-width: 768px) {
+  .container {
+    --pad: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    --pad: 48px;
+  }
+}
+
+/* ============================================================
+   Shared type
+   ============================================================ */
+.eyebrow {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.eyebrowTeal {
+  color: var(--zd-teal);
+}
+
+.eyebrowGold {
+  color: var(--zd-gold);
+}
+
+.title {
+  margin-top: 14px;
+  color: var(--zd-navy);
+  font-weight: 700;
+}
+
+/* 360 heading sizes are set per section in the master. */
+.titleFeatures {
+  margin-top: 16px;
+  font-size: 23px;
+  line-height: 35px;
+}
+
+.titleDomains {
+  font-size: 25px;
+  line-height: 36px;
+}
+
+.titleHow {
+  font-size: 25px;
+  line-height: 34px;
+}
+
+.titleReport {
+  font-size: 26px;
+  line-height: 36px;
+}
+
+.titlePilot {
+  margin-top: 17px;
+  font-size: 26px;
+  line-height: 33px;
+}
+
+@media (min-width: 768px) {
+  .eyebrow {
+    font-size: 13px;
+  }
+
+  .title {
+    margin-top: 17px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .titleDomains {
+    margin-top: 19px;
+  }
+
+  .brMobile {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Buttons: 44px, radius 8, focus ring 3px #2563EB
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--zd-control-height);
+  padding: 0 16px;
+  border-radius: var(--zd-radius-button);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--zd-motion-fast) ease-out,
+    box-shadow var(--zd-motion-fast) ease-out,
+    transform var(--zd-motion-fast) ease-out;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--zd-shadow-dropdown);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btnGold {
+  border: 0;
+  background: var(--zd-gold);
+  color: var(--zd-navy);
+}
+
+.btnOutline {
+  border: 1px solid var(--zd-white);
+  background: transparent;
+  color: var(--zd-white);
+  font-weight: 600;
+}
+
+.btnNavy {
+  border: 0;
+  background: var(--zd-navy);
+  color: var(--zd-white);
+}
+
+/* design_tokens.json buttons.states.hover.primary */
+.btnNavy:hover {
+  background: var(--zd-soft-navy);
+}
+
+/* ============================================================
+   Z02 · Hero
+   ============================================================ */
+.hero {
+  overflow: hidden;
+  background: var(--zd-navy);
+  color: var(--zd-white);
+}
+
+/* 360: eyebrow, headline, body, signature system, one primary action. */
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'copy'
+    'system'
+    'actions';
+  padding-top: 60px;
+  padding-bottom: 41px;
+}
+
+.heroCopy {
+  grid-area: copy;
+}
+
+.heroEyebrow {
+  color: var(--zd-gold);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin-top: 20px;
+  color: var(--zd-white);
+  font-size: 34px;
+  line-height: 43px;
+  font-weight: 700;
+}
+
+.heroBody {
+  margin-top: 15px;
+  color: var(--zd-white);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.heroSystem {
+  grid-area: system;
+  justify-self: center;
+  width: 264px;
+  max-width: 100%;
+  margin-top: 77px;
+}
+
+.heroActions {
+  grid-area: actions;
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.heroPrimary {
+  width: 100%;
+  font-size: 15px;
+}
+
+.heroSecondary {
+  display: none;
+}
+
+/* 768: eyebrow -> headline -> copy -> CTAs -> signature system. */
+@media (min-width: 768px) {
+  .heroGrid {
+    grid-template-areas:
+      'copy'
+      'actions'
+      'system';
+    padding-top: 72px;
+    padding-bottom: 64px;
+  }
+
+  .heroEyebrow {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .heroTitle {
+    margin-top: 16px;
+    font-size: 46px;
+    line-height: 54px;
+  }
+
+  /* Reproduces the master's five-line grouping at 17px. */
+  .heroBody {
+    max-width: 494px;
+    margin-top: 26px;
+    font-size: 17px;
+    line-height: 26.35px;
+  }
+
+  .heroActions {
+    margin-top: 48px;
+  }
+
+  .heroPrimary {
+    width: 190px;
+    font-size: 14px;
+  }
+
+  .heroSecondary {
+    display: inline-flex;
+    width: 172px;
+  }
+
+  .heroSystem {
+    width: 442px;
+    margin-top: 48px;
+  }
+}
+
+/* 1024: text 46% / system 54%, gap 32. System centred in the 720px hero. */
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 720px;
+  }
+
+  .heroGrid {
+    min-height: 720px;
+    padding-top: 0;
+    padding-bottom: 0;
+    grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+    grid-template-rows: 88px auto auto 1fr;
+    grid-template-areas:
+      '. system'
+      'copy system'
+      'actions system'
+      '. system';
+    column-gap: 32px;
+  }
+
+  .heroSystem {
+    align-self: center;
+    margin-top: 0;
+  }
+}
+
+/* 1440 master: copy at x=120, system centred at x=1050, y=432. */
+@media (min-width: 1440px) {
+  .heroGrid {
+    grid-template-columns: minmax(0, 1fr) 540px;
+    column-gap: 0;
+  }
+
+  .heroTitle {
+    font-size: 52px;
+    line-height: 60px;
+    white-space: nowrap;
+  }
+}
+
+/* ============================================================
+   Living Biological Intelligence System (see _home/LivingSystem.tsx)
+   ============================================================ */
+.system {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.systemSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.systemControls {
+  position: absolute;
+  inset: 0;
+}
+
+.domainControl {
+  position: absolute;
+  width: max(44px, 11%);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.wakeCore {
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
+.nodeMark {
+  transform-box: view-box;
+}
+
+/* Domain Focus: one pathway strengthens, the rest recede but stay visible. */
+.link,
+.nodeMark,
+.nodeMark circle {
+  transition:
+    opacity var(--motion) ease-out,
+    stroke var(--motion) ease-out,
+    stroke-width var(--motion) ease-out;
+}
+
+.link[data-state='active'] {
+  stroke: var(--zd-gold);
+  stroke-width: 1.5;
+  opacity: 0.9;
+}
+
+.link[data-state='dim'] {
+  opacity: 0.2;
+}
+
+.nodeMark[data-state='dim'] {
+  opacity: 0.45;
+}
+
+.nodeMark[data-state='active'] circle {
+  stroke-width: 4;
+}
+
+.domainsSystem {
+  width: 298px;
+  max-width: 100%;
+  margin: 146px auto 0;
+}
+
+@media (min-width: 768px) {
+  .domainsSystem {
+    width: 552px;
+    margin-top: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .domainsSystem {
+    margin-top: 22px;
+  }
+}
+
+/* ============================================================
+   Z03 · Trust strip
+   ============================================================ */
+.trust {
+  background: var(--zd-white);
+}
+
+.trustList {
+  display: grid;
+  list-style: none;
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+
+.trustItem {
+  display: flex;
+  gap: 8px;
+  padding-left: 8px;
+  color: var(--zd-soft-navy);
+  font-size: 14px;
+  line-height: 45px;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .trustList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .trustItem {
+    padding-left: 0;
+    line-height: 24px;
+  }
+
+  .trustCheck {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trustList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .trustItem {
+    align-items: center;
+    justify-content: center;
+    min-height: 96px;
+    line-height: 20px;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   Z04 · Six features
+   ============================================================ */
+.features {
+  padding-top: 27px;
+}
+
+.featureGrid {
+  display: grid;
+  gap: 16px;
+  margin-top: 34px;
+  list-style: none;
+}
+
+.featureCard {
+  min-height: 112px;
+  padding: 18px 16px 16px;
+  border: 1px solid var(--zd-border);
+  border-radius: var(--zd-radius-card);
+  background: var(--zd-white);
+}
+
+.featureTitle {
+  color: var(--zd-navy);
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+/* 240px reproduces the 360 master's line grouping at 13px (valid range 235–246). */
+.featureBody {
+  max-width: 240px;
+  margin-top: 9px;
+  color: var(--zd-muted);
+  font-size: 13px;
+  line-height: 18.2px;
+}
+
+@media (min-width: 768px) {
+  .features {
+    padding-top: 64px;
+  }
+
+  .featureGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .featureBody {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .features {
+    padding-top: 78px;
+  }
+
+  /* Master grid: three 368px cards, 32px across, 24px down (1168px). */
+  .featureGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 32px;
+    row-gap: 24px;
+    max-width: 1168px;
+    margin-top: 39px;
+  }
+
+  .featureCard {
+    min-height: 126px;
+    padding: 21px 22px 20px;
+  }
+
+  .featureTitle {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .featureBody {
+    font-size: 14px;
+    line-height: 19.6px;
+  }
+}
+
+/* ============================================================
+   Z05 · Seven domains (warm-white field, as in the masters)
+   ============================================================ */
+.domains {
+  padding-top: 42px;
+  padding-bottom: 137px;
+}
+
+@media (min-width: 768px) {
+  .domains {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+/* The 1440 master lets the white How It Works band cover the bottom nodes;
+   the band starts below the system here so nothing is clipped. */
+@media (min-width: 1024px) {
+  .domains {
+    padding-top: 14px;
+    padding-bottom: 0;
+  }
+}
+
+/* ============================================================
+   Z06 · How it works
+   ============================================================ */
+.how {
+  min-height: 1050px;
+  padding-top: 44px;
+  padding-bottom: 48px;
+  background: var(--zd-white);
+}
+
+.steps {
+  display: grid;
+  margin-top: 31px;
+  list-style: none;
+}
+
+/* 360: number in a 36px column, baseline-aligned with the title; 150px rhythm. */
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-content: start;
+  align-items: baseline;
+  min-height: 150px;
+}
+
+.step:last-child {
+  min-height: 0;
+}
+
+.stepNum {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--zd-gold);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+}
+
+.stepTitle {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--zd-navy);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.stepBody {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 11px;
+  color: var(--zd-muted);
+  font-size: 14px;
+  line-height: 20.3px;
+}
+
+.stepConnector {
+  display: none;
+  transform-origin: left center;
+}
+
+@media (min-width: 768px) {
+  .how {
+    min-height: 0;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 32px;
+    margin-top: 39px;
+  }
+
+  .step {
+    display: block;
+    min-height: 0;
+  }
+
+  .stepNum {
+    display: block;
+  }
+
+  .stepTitle {
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .stepBody {
+    margin-top: 7px;
+  }
+}
+
+/* 1440 master: four 300px columns, 32px teal connector 250px into each. */
+@media (min-width: 1024px) {
+  .how {
+    min-height: 520px;
+    padding-top: 66px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .stepBody {
+    max-width: calc(100% - 60px);
+  }
+
+  .stepConnector {
+    position: absolute;
+    top: 36px;
+    right: 18px;
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--zd-teal);
+  }
+}
+
+/* ============================================================
+   Z07 · Example report
+   ============================================================ */
+.report {
+  padding-top: 29px;
+}
+
+.reportCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 610px;
+  margin-top: 34px;
+  padding: 39px 44px 76px 20px;
+  border-radius: var(--zd-radius-card);
+  background: var(--zd-navy);
+  color: var(--zd-white);
+}
+
+.reportLoaded {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.reportLabel {
+  color: var(--zd-gold);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.reportScore {
+  display: flex;
+  align-items: baseline;
+  margin-top: 26px;
+}
+
+.reportScoreNum {
+  font-size: 64px;
+  line-height: 64px;
+  font-weight: 700;
+}
+
+.reportScoreDenom {
+  margin-left: 12px;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.reportStatus {
+  margin-top: 11px;
+  color: var(--zd-strained);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* 360: label left, value right, full-width bar below; 78px rhythm. */
+.metrics {
+  display: grid;
+  row-gap: 41px;
+  margin-top: 40px;
+  list-style: none;
+}
+
+.metric {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+}
+
+.metricLabel {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.metricValue {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.metricTrack {
+  display: block;
+  grid-column: 1 / -1;
+  height: 5px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--zd-soft-navy);
+}
+
+.metricFill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  transform-origin: left center;
+}
+
+.reportNote {
+  margin-top: auto;
+  padding-top: 24px;
+  font-size: 13px;
+  line-height: 18.2px;
+}
+
+.reportMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.reportMessageTitle {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.reportMessageBody {
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.btnRetry {
+  min-width: var(--zd-button-min-width);
+  margin-top: 16px;
+  padding: 0 24px;
+}
+
+/* 768: Biological State first, then the three metrics in one row. */
+@media (min-width: 768px) {
+  .report {
+    padding-top: 64px;
+  }
+
+  .reportCard {
+    min-height: 0;
+    margin-top: 40px;
+    padding: 44px 50px 59px;
+  }
+
+  .reportBody {
+    display: grid;
+    row-gap: 40px;
+  }
+
+  .reportLabel {
+    font-size: 13px;
+  }
+
+  .reportScore {
+    margin-top: 25px;
+  }
+
+  .reportScoreNum {
+    font-size: 72px;
+    line-height: 72px;
+  }
+
+  .reportScoreDenom {
+    margin-left: 9px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .reportStatus {
+    margin-top: 14px;
+    font-size: 15px;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 32px;
+    row-gap: 0;
+    margin-top: 0;
+  }
+
+  /* Stretch (not the 360 baseline alignment) so the bar spans the column: 190px at 1440. */
+  .metric {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .metricValue {
+    margin-top: 25px;
+    font-size: 44px;
+    line-height: 44px;
+  }
+
+  .metricTrack {
+    height: 6px;
+    margin-top: 15px;
+  }
+
+  .reportNote {
+    padding-top: 48px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 1024px) {
+  .report {
+    padding-top: 73px;
+  }
+
+  .reportCard {
+    min-height: 500px;
+    margin-top: 44px;
+  }
+
+  .reportBody {
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 48px;
+  }
+
+  .metrics {
+    column-gap: 48px;
+    padding-top: 18px;
+  }
+}
+
+/* 1440 master: state at x=170, metrics at 510 / 760 / 1010, 190px bars. */
+@media (min-width: 1440px) {
+  .reportBody {
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 60px;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(3, 190px);
+    column-gap: 60px;
+  }
+}
+
+/* ============================================================
+   Z08 · Pilot CTA
+   ============================================================ */
+.pilot {
+  padding-top: 65px;
+  padding-bottom: 70px;
+}
+
+.pilotCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 430px;
+  padding: 38px 16px 46px;
+  border: 1px solid var(--zd-border);
+  border-radius: var(--zd-radius-card);
+  background: var(--zd-white);
+}
+
+/* 262px reproduces the 360 master's six-line grouping at 14px. */
+.pilotBody {
+  max-width: 262px;
+  margin-top: 19px;
+  margin-bottom: 32px;
+  color: var(--zd-muted);
+  font-size: 14px;
+  line-height: 20.3px;
+}
+
+.pilotCta {
+  width: 100%;
+  margin-top: auto;
+}
+
+@media (min-width: 768px) {
+  .pilot {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  .pilotCard {
+    min-height: 0;
+    padding: 48px 40px;
+  }
+
+  /* Reproduces the master's three-line grouping at 16px. */
+  .pilotBody {
+    max-width: 587px;
+    margin-top: 17px;
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .pilotCta {
+    width: 150px;
+    margin-top: 39px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pilot {
+    padding-top: 50px;
+    padding-bottom: 60px;
+  }
+
+  .pilotCard {
+    min-height: 360px;
+    padding: 58px 48px 56px;
+  }
+}
+
+/* ============================================================
+   Contract-required elements the masters do not draw
+   (conflicts C and D, flagged to ROOTS). Token-only styling:
+   body 16/26, muted, reading width 720, teal marker, navy button.
+   ============================================================ */
+.reportIntro {
+  max-width: var(--zd-reading-max);
+  margin-top: 16px;
+  color: var(--zd-muted);
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.reportAction {
+  min-width: var(--zd-button-min-width);
+  margin-top: 24px;
+  padding: 0 24px;
+}
+
+.pilotBody {
+  margin-bottom: 0;
+}
+
+/* Consent / eligibility copy: never below 16px (typography spec). */
+.pilotStatements {
+  margin: 16px 0 32px;
+  padding-left: 20px;
+  color: var(--zd-muted);
+  font-size: 16px;
+  line-height: 26px;
+  list-style: disc;
+}
+
+.pilotStatements li::marker {
+  color: var(--zd-teal);
+}
+
+@media (min-width: 768px) {
+  .pilotStatements {
+    max-width: var(--zd-reading-max);
+    margin: 24px 0 0;
+  }
+}
+
+/* ============================================================
+   Orbital system: grid, orbits, node halos, domain card
+   ============================================================ */
+.orbitGrid line {
+  stroke: var(--zd-teal);
+  stroke-width: 1;
+  opacity: 0.18;
+}
+
+.orbitA,
+.orbitB {
+  transform-box: view-box;
+  transform-origin: 0px -20px;
+}
+
+.orbitA ellipse,
+.orbitB ellipse {
+  fill: none;
+  stroke: var(--zd-teal);
+  stroke-width: 1.5;
+}
+
+.nodeHalo {
+  transition: opacity var(--motion) ease-out;
+}
+
+.nodeMark[data-state='active'] .nodeHalo {
+  opacity: 0.22;
+}
+
+.domainTip {
+  position: absolute;
+  z-index: 5;
+  width: min(260px, 92%);
+  left: clamp(0px, calc(var(--x) - min(130px, 46%)), calc(100% - min(260px, 92%)));
+  padding: 14px 16px;
+  border: 1px solid var(--zd-teal);
+  border-radius: var(--zd-radius-card);
+  background: var(--zd-soft-navy);
+  color: var(--zd-white);
+  box-shadow: var(--zd-shadow-dropdown);
+  text-align: left;
+  pointer-events: none;
+}
+
+.domainTipCode {
+  color: var(--zd-gold);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.domainTipName {
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.domainTipBody {
+  margin-top: 4px;
+  color: var(--zd-border);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tipIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orbitA {
+    animation: orbitSpin 60s linear infinite;
+  }
+
+  .orbitB {
+    animation: orbitSpin 90s linear infinite reverse;
+  }
+
+  .domainTip {
+    animation: tipIn var(--motion) ease-out both;
+  }
+}
+
+/* ============================================================
+   Motion — every transition 150–250ms (interaction.motion).
+   Everything below is skipped under prefers-reduced-motion, which
+   therefore shows the final state immediately.
+   ============================================================ */
+@keyframes wakeFade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes wakeCore {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes wakeDraw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes wakeScale {
+  from {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* System Wake: core -> trunk -> pathway bundle -> seven domains in order. */
+  .system[data-wake='load'] .wakeCore,
+  .reveal[data-reveal='shown'] .system[data-wake='view'] .wakeCore {
+    animation: wakeCore 200ms ease-out both;
+  }
+
+  .system[data-wake='load'] .wakeTrunk,
+  .reveal[data-reveal='shown'] .system[data-wake='view'] .wakeTrunk {
+    stroke-dasharray: 1;
+    animation: wakeDraw 250ms ease-out 150ms both;
+  }
+
+  .system[data-wake='load'] .wakeBundle,
+  .reveal[data-reveal='shown'] .system[data-wake='view'] .wakeBundle {
+    animation: wakeFade 200ms ease-out 300ms both;
+  }
+
+  .system[data-wake='load'] .wakeNode,
+  .reveal[data-reveal='shown'] .system[data-wake='view'] .wakeNode {
+    animation: wakeFade 200ms ease-out calc(400ms + var(--i) * 40ms) both;
+  }
+
+  .system[data-wake='load'] .nodeMark,
+  .reveal[data-reveal='shown'] .system[data-wake='view'] .nodeMark {
+    animation: wakeScale 200ms ease-out calc(400ms + var(--i) * 40ms) both;
+  }
+
+  .reveal[data-reveal='armed'] .system[data-wake='view'] :is(.wakeCore, .wakeTrunk, .wakeBundle, .wakeNode) {
+    opacity: 0;
+  }
+
+  /* Section reveal as each block enters the viewport. */
+  .reveal {
+    transition:
+      opacity var(--zd-motion-slow) ease-out,
+      transform var(--zd-motion-slow) ease-out;
+  }
+
+  .reveal[data-reveal='armed'] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  /* Report bars and process connectors grow from their start. */
+  .reveal[data-reveal='armed'] .metricFill,
+  .reveal[data-reveal='armed'] .stepConnector {
+    transform: scaleX(0);
+  }
+
+  .reveal[data-reveal='shown'] .metricFill {
+    animation: grow 250ms ease-out calc(150ms + var(--i) * 50ms) both;
+  }
+
+  .reveal[data-reveal='shown'] .stepConnector {
+    animation: grow 250ms ease-out calc(150ms + var(--i) * 80ms) both;
+  }
+
+  /* Example report state changes (loaded / loading / error). */
+  .stateEnter {
+    animation: wakeFade 200ms ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .link,
+  .nodeMark,
+  .nodeMark circle {
+    transition: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
