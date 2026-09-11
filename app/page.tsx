@@ -24,6 +24,7 @@ import {
   HOW_HEADING,
   PILOT,
   REPORT,
+  REPORT_HEADING,
   REPORT_STATES,
   STEPS,
   TRUST,
@@ -144,10 +145,18 @@ export default function Home() {
       {/* Z07 · Example report teaser */}
       <section className={styles.report} data-zone="PUB01-Z07" aria-labelledby="report-title">
         <div className={`${styles.container} ${styles.reveal}`} data-reveal="">
-          <p className={`${styles.eyebrow} ${styles.eyebrowGold}`}>Example report</p>
+          <p className={`${styles.eyebrow} ${styles.eyebrowGold}`}>{REPORT_HEADING.eyebrow}</p>
           <h2 id="report-title" className={`${styles.title} ${styles.titleReport}`}>
-            See the state, drivers and boundaries clearly
+            {REPORT_HEADING.title}
           </h2>
+          {/* Governed intro sentence and action (contract Z07). */}
+          <p className={styles.reportIntro}>{REPORT_HEADING.body}</p>
+          <Link
+            href={REPORT_HEADING.cta.href}
+            className={`${styles.btn} ${styles.btnNavy} ${styles.reportAction}`}
+          >
+            {REPORT_HEADING.cta.label}
+          </Link>
           <ExampleReport />
         </div>
       </section>
@@ -163,6 +172,12 @@ export default function Home() {
               {PILOT.title[1]}
             </h2>
             <p className={styles.pilotBody}>{PILOT.body}</p>
+            {/* Governed eligibility and boundary statements (contract Z08). */}
+            <ul className={styles.pilotStatements}>
+              {PILOT.statements.map((statement) => (
+                <li key={statement}>{statement}</li>
+              ))}
+            </ul>
             <Link
               href={PILOT.cta.href}
               className={`${styles.btn} ${styles.btnNavy} ${styles.pilotCta}`}

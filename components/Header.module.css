@@ -1,6 +1,7 @@
 /* components/Header.module.css
  *
- * PUB01-Z01. Sizes from PUB-01_1440_MASTER.svg / PUB-01_360_MASTER.svg; colours,
+ * PUB01-Z01. Sizes from PUB-01_1440_MASTER_CORRECTED_FINAL.svg /
+ * PUB-01_360_MASTER_CORRECTED_FINAL.svg (v1.2.1); colours,
  * radius, shadow, focus ring, z-index and motion from app/zd-tokens.css.
  * Breakpoints: menu control below 1024 (responsive rules, 768: "wordmark left,
  * approved menu control right"), desktop navigation from 1024.
@@ -37,11 +38,11 @@
   border-radius: var(--zd-radius-button);
 }
 
-/* Header logo (public/brand/roots-logo-header.png): 56px tall inside the 72px band. */
+/* Client-selected logo (11 Sep 2026), cropped to its artwork: 37 x 48 at every width. */
 .wordmark {
   display: block;
-  width: auto;
-  height: 56px;
+  width: 37px;
+  height: 48px;
 }
 
 .nav,
@@ -49,9 +50,8 @@
   display: none;
 }
 
-/* 360 master: 44 x 36 outlined control; the hit area stays 44 x 44. */
+/* 360 corrected master: 44 x 44, radius 8, white at 5% fill, no outline. */
 .menuButton {
-  position: relative;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -62,26 +62,14 @@
   padding: 0;
   border: 0;
   border-radius: var(--zd-radius-button);
-  background: transparent;
+  background: color-mix(in srgb, var(--zd-white) 5%, transparent);
   color: var(--zd-white);
   cursor: pointer;
-}
-
-.menuButton::before {
-  content: '';
-  position: absolute;
-  inset: 4px 0;
-  border: 1px solid var(--zd-white);
-  border-radius: var(--zd-radius-button);
   transition: background-color var(--zd-motion-fast) ease-out;
 }
 
-.menuButton:hover::before {
+.menuButton:hover {
   background: var(--zd-soft-navy);
-}
-
-.menuButton svg {
-  position: relative;
 }
 
 .brand:focus-visible,
@@ -101,22 +89,41 @@
   }
 }
 
-/* ------------------------------------------------------- desktop (>= 1024) */
 @media (min-width: 1024px) {
   .inner {
     --pad: 48px;
   }
+}
 
+/* ------------------------------------------------ desktop navigation (>= 1440)
+   Responsive rules, 1024: keep desktop navigation only while every item fits at the
+   approved size, otherwise use the 768 menu treatment. At 14px navigation and a 16px
+   action the items do not fit at 1024, so the menu control continues until 1440. */
+@media (min-width: 1440px) {
+  /* Each item sits in a slot centred on the master's text-anchor="middle" x
+     (365 / 465 / 575 / 690 / 775 / 850). Slots start at 315; the logo ends at 157. */
   .nav {
     display: flex;
     align-items: center;
-    gap: 11px;
-    margin-left: 76px;
+    margin-left: 158px;
+  }
+
+  .nav > :nth-child(1) { width: 100px; }
+  .nav > :nth-child(2) { width: 100px; }
+  .nav > :nth-child(3) { width: 120px; }
+  .nav > :nth-child(4) { width: 110px; }
+  .nav > :nth-child(5) { width: 60px; }
+  .nav > :nth-child(6) { width: 90px; }
+
+  .more {
+    display: flex;
+    justify-content: center;
   }
 
   .navLink,
   .moreButton {
     display: inline-flex;
+    justify-content: center;
     align-items: center;
     min-height: var(--zd-touch-target);
     padding: 0;
@@ -124,8 +131,9 @@
     background: transparent;
     color: var(--zd-white);
     font-family: inherit;
-    font-size: 13px;
-    line-height: 16px;
+    /* Navigation: 14/20, weight 500 (typography spec). */
+    font-size: 14px;
+    line-height: 20px;
     font-weight: 500;
     white-space: nowrap;
     text-decoration: none;
@@ -179,8 +187,8 @@
   padding: 0 12px;
   border-radius: var(--zd-radius-button);
   color: var(--zd-white);
-  font-size: 13px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
@@ -192,19 +200,20 @@
   background: var(--zd-soft-navy);
 }
 
-/* 1440 master: 182 x 44, radius 8, #C7A45B, 13px / 700 #1A2A4A. */
+/* 1440 corrected master action: 220 x 44, radius 8, #FFFFFF, 14px / 600 #1A2A4A label. */
 .cta {
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 182px;
+  width: 220px;
   height: var(--zd-control-height);
+  padding: 0;
   border-radius: var(--zd-radius-button);
-  background: var(--zd-gold);
+  background: var(--zd-white);
   color: var(--zd-navy);
-  font-size: 13px;
-  line-height: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
   white-space: nowrap;
   text-decoration: none;
   transition:
@@ -288,7 +297,6 @@
   display: inline-flex;
   width: 100%;
   margin-top: 24px;
-  font-size: 15px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -317,7 +325,7 @@
   .header,
   .cta,
   .moreLink,
-  .menuButton::before {
+  .menuButton {
     transition: none;
   }
 

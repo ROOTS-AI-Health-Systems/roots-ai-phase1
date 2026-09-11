@@ -3,10 +3,10 @@
 /**
  * Global footer, zone PUB01-Z09.
  *
- * Composition from the masters: navy band, approved dark-surface wordmark,
- * disclaimer, copyright. Link groups keep the order agreed with ROOTS
- * (Product · Research · Company · Legal) and reach every approved public and
- * legal route plus the Start Your Assessment action (contract Z09).
+ * Authority: PUB-01_1440_MASTER_CORRECTED_FINAL.svg / PUB-01_360_MASTER_CORRECTED_FINAL.svg
+ * (v1.2.1, approved C-04/C-05 global public footer): wordmark, the Product / Company /
+ * Legal groups, a divider, the boundary statement and the approved copyright.
+ * Centred at 360, left-aligned columns on desktop. Colours are tokens only.
  */
 
 import Link from 'next/link';
@@ -17,26 +17,21 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
   {
     title: 'Product',
     links: [
+      ['Assessment', '/assessment'],
+      ['Example Report', '/example-report'],
       ['How It Works', '/how-it-works'],
       ['Platform', '/platform'],
-      ['Example Report', '/example-report'],
-      ['Start Your Assessment', '/assessment'],
-    ],
-  },
-  {
-    title: 'Research',
-    links: [
-      ['Research', '/research'],
-      ['Pilot Program', '/pilot'],
-      ['Healthcare Professionals', '/healthcare-professionals'],
     ],
   },
   {
     title: 'Company',
     links: [
       ['About', '/about'],
-      ['Blog', '/blog'],
+      ['Research', '/research'],
+      ['Healthcare Professionals', '/healthcare-professionals'],
+      ['Pilot Program', '/pilot'],
       ['Contact', '/contact'],
+      ['Blog', '/blog'],
     ],
   },
   {
@@ -65,11 +60,6 @@ export default function Footer() {
           <img src="/brand/ROOTS-wordmark-dark.svg" alt="ROOTS-AI™" className={styles.wordmark} />
         </Link>
 
-        <p className={styles.disclaimer}>
-          ROOTS-AI™ provides educational wellness information and does not diagnose or treat medical
-          conditions.
-        </p>
-
         <nav className={styles.columns} aria-label="Footer">
           {COLUMNS.map((column) => (
             <div key={column.title}>
@@ -87,7 +77,18 @@ export default function Footer() {
           ))}
         </nav>
 
-        <p className={styles.copyright}>© 2026 ROOTS AI HEALTH SYSTEMS, Inc. All rights reserved.</p>
+        <div className={styles.legal}>
+          <p className={styles.disclaimer}>
+            ROOTS-AI™ provides educational wellness information and does not diagnose or treat medical
+            conditions.
+          </p>
+          {/* The 360 master sets the copyright on two lines. */}
+          <p className={styles.copyright}>
+            © 2026 ROOTS AI HEALTH SYSTEMS, Inc.{' '}
+            <br className={styles.brMobile} />
+            All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );

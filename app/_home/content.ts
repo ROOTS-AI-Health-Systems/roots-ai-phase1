@@ -79,12 +79,13 @@ export interface Domain {
 }
 
 /**
- * Codes follow the masters (the visual authority): ME/HU/SL/CI/ST/IN/SA.
- * Positions, colours and short labels under nodes are from the masters.
+ * Codes are the canonical set from the governed content contract (Z05):
+ * MR / HS / SR / CH / SL / IB / BS (ROOTS direction, 11 Sep 2026). The master SVG's
+ * ME/HU/SL/CI/ST/IN/SA set is not used: its "SL" meant Sleep, not Stress Load.
  */
 export const DOMAINS: Domain[] = [
   {
-    code: 'ME',
+    code: 'MR',
     label: 'Metabolic',
     name: 'Metabolic Resistance™',
     body: 'Self-reported resistance to expected weight change and activity-related metabolic context.',
@@ -93,7 +94,7 @@ export const DOMAINS: Domain[] = [
     color: '#4F8F86',
   },
   {
-    code: 'HU',
+    code: 'HS',
     label: 'Hunger',
     name: 'Hunger & Satiety Signals™',
     body: 'Hunger, craving, fullness and post-meal response patterns.',
@@ -102,7 +103,7 @@ export const DOMAINS: Domain[] = [
     color: '#C7A45B',
   },
   {
-    code: 'SL',
+    code: 'SR',
     label: 'Sleep',
     name: 'Sleep Recovery Index™',
     body: 'Sleep duration, continuity and perceived restoration.',
@@ -111,7 +112,7 @@ export const DOMAINS: Domain[] = [
     color: '#2A4060',
   },
   {
-    code: 'CI',
+    code: 'CH',
     label: 'Circadian',
     name: 'Circadian Health Score™',
     body: 'Alignment of light, screen, meal and sleep timing.',
@@ -120,7 +121,7 @@ export const DOMAINS: Domain[] = [
     color: '#4F8F86',
   },
   {
-    code: 'ST',
+    code: 'SL',
     label: 'Stress',
     name: 'Stress Load™',
     body: 'Perceived tension, cognitive activation and stress-linked eating.',
@@ -129,7 +130,7 @@ export const DOMAINS: Domain[] = [
     color: '#E67E22',
   },
   {
-    code: 'IN',
+    code: 'IB',
     label: 'Inflammation',
     name: 'Inflammation Burden Index™',
     body: 'Non-specific symptom burden; not a laboratory or clinical inflammation measure.',
@@ -138,7 +139,7 @@ export const DOMAINS: Domain[] = [
     color: '#C7A45B',
   },
   {
-    code: 'SA',
+    code: 'BS',
     label: 'Safety',
     name: 'Biological Safety Signals™',
     body: 'Perceived energy, appetite drive and resistance signals.',
@@ -202,6 +203,14 @@ export const REPORT_STATES = {
   },
 };
 
+/** Governed heading, intro sentence and action for the example report teaser (contract Z07). */
+export const REPORT_HEADING = {
+  eyebrow: 'Example report',
+  title: 'See the state, drivers and boundaries clearly',
+  body: 'The preview uses approved sample values and demonstrates the required loaded, loading and error states.',
+  cta: { label: 'View Example Report', href: '/example-report' },
+};
+
 /* --------------------------------------------------- Z08 pilot CTA */
 
 export const PILOT = {
@@ -210,4 +219,12 @@ export const PILOT = {
   title: ['Join the ROOTS-AI™', 'Free Beta'] as const,
   body: 'The beta explores whether a structured, non-diagnostic assessment can help people understand self-reported patterns involving weight resistance, energy, sleep, stress and appetite.',
   cta: { label: 'Check Eligibility', href: '/pilot' },
+  /** Governed eligibility and boundary statements (contract Z08). */
+  statements: [
+    'Adults aged 18 and over.',
+    'Participation is voluntary and withdrawal is permitted.',
+    'The experience is educational and does not provide medical care.',
+    'Usability feedback and any research participation require separate consent.',
+    'No payment is required for the approved beta cohort.',
+  ],
 };

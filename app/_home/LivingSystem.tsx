@@ -29,13 +29,13 @@ const NODE_R = 26;
 
 /** Node placement and ring colour per domain code (approved palette only). */
 const LAYOUT: Record<string, { x: number; y: number; ring: string }> = {
-  ME: { x: -172, y: -146, ring: '#4F8F86' },
-  HU: { x: -42, y: -204, ring: '#C7A45B' },
-  SL: { x: 155, y: -169, ring: '#D1D5DB' },
-  CI: { x: 189, y: -26, ring: '#4F8F86' },
-  ST: { x: 141, y: 142, ring: '#E67E22' },
-  IN: { x: -27, y: 170, ring: '#C7A45B' },
-  SA: { x: -176, y: 132, ring: '#27AE60' },
+  MR: { x: -172, y: -146, ring: '#4F8F86' }, // Metabolic Resistance
+  HS: { x: -42, y: -204, ring: '#C7A45B' }, // Hunger & Satiety Signals
+  SR: { x: 155, y: -169, ring: '#D1D5DB' }, // Sleep Recovery Index
+  CH: { x: 189, y: -26, ring: '#4F8F86' }, // Circadian Health Score
+  SL: { x: 141, y: 142, ring: '#E67E22' }, // Stress Load
+  IB: { x: -27, y: 170, ring: '#C7A45B' }, // Inflammation Burden Index
+  BS: { x: -176, y: 132, ring: '#27AE60' }, // Biological Safety Signals
 };
 
 /** Perspective floor: horizontals get further apart towards the viewer. */
@@ -157,23 +157,34 @@ export default function LivingSystem({
           <circle cx={0} cy={CORE_Y} r={108} fill="none" stroke="#E67E22" strokeWidth={1.25} opacity={0.75} />
           <circle cx={0} cy={CORE_Y} r={84} fill="#FFFFFF" opacity={0.05} />
           <circle cx={0} cy={CORE_Y} r={70} fill="#1A2A4A" stroke="#C7A45B" strokeWidth={2.5} />
+          {/* Sizes come from CSS so each line is at least 12px on screen; the reading is
+              set on two lines so it stays inside the gold ring at that size. */}
           <text
             x={0}
-            y={CORE_Y - 16}
-            fontSize={11}
+            y={CORE_Y - 30}
+            className={styles.lbisCoreEyebrow}
             fontWeight={700}
-            letterSpacing={1.2}
             fill="#D8DEE8"
             textAnchor="middle"
           >
             BIOLOGICAL
           </text>
-          <text x={0} y={CORE_Y + 12} fontSize={28} fontWeight={700} fill="#FFFFFF" textAnchor="middle">
+          <text x={0} y={CORE_Y - 2} className={styles.lbisCoreTitle} fontWeight={700} fill="#FFFFFF" textAnchor="middle">
             STATE
           </text>
-          <text x={0} y={CORE_Y + 32} fontSize={9} fontWeight={700} fill="#C7A45B" textAnchor="middle">
-            {CORE.reading}
-          </text>
+          {CORE.reading.split(' · ').map((line, i) => (
+            <text
+              key={line}
+              x={0}
+              y={CORE_Y + 24 + i * 22}
+              className={styles.lbisCoreReading}
+              fontWeight={600}
+              fill="#C7A45B"
+              textAnchor="middle"
+            >
+              {line}
+            </text>
+          ))}
         </g>
 
         {/* Seven domains */}
@@ -189,16 +200,25 @@ export default function LivingSystem({
               >
                 <circle className={styles.nodeHalo} cx={p.x} cy={p.y} r={NODE_R + 7} fill="#FFFFFF" opacity={0.08} />
                 <circle cx={p.x} cy={p.y} r={NODE_R} fill="#FFFFFF" stroke={p.ring} strokeWidth={3} />
-                <text x={p.x} y={p.y + 4} fontSize={11} fontWeight={700} fill="#1A2A4A" textAnchor="middle">
+                <text
+                  x={p.x}
+                  y={p.y}
+                  className={styles.lbisCode}
+                  fontWeight={700}
+                  fill="#1A2A4A"
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                >
                   {d.code}
                 </text>
                 <text
                   x={p.x}
-                  y={p.y + NODE_R + 19}
-                  fontSize={10}
+                  y={p.y + NODE_R + 7}
+                  className={styles.lbisLabel}
                   fontWeight={600}
                   fill="#D8DEE8"
                   textAnchor="middle"
+                  dominantBaseline="hanging"
                 >
                   {d.label}
                 </text>

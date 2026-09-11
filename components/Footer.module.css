@@ -1,10 +1,15 @@
 /* components/Footer.module.css
  *
- * PUB01-Z09. Wordmark, disclaimer and copyright sizes and offsets from the masters
- * (1440: wordmark 160 x 36 at 45px, disclaimer 14px, copyright 12px, 45px bottom;
- * 360: wordmark 150 x 34 at 38px). Link groups: footer links 16/24 with 44px
- * targets (typography spec, tokens). Two groups per row below 1024, four from 1024.
- * Colours from app/zd-tokens.css; breakpoints 768 / 1024 only.
+ * PUB01-Z09, measured from the corrected final masters (v1.2.1):
+ *   1440  band from y 3640; wordmark 160 x 36 at +40; group titles 15/700 (baseline 3750),
+ *         links 14px on a 28px pitch; groups at x 120 / 470 / 850; #2A4060 divider across
+ *         the 1200 column at 3960; boundary 13px (baseline 4000); copyright 12px (4050);
+ *         band ends 4112.
+ *   360   everything centred; wordmark 150 x 34 at +40; groups stacked (Product title
+ *         baseline 5290, 30px between groups); divider 32-328 at 5870; boundary 13/20
+ *         on three lines (5910); copyright 12/20 on two lines (6010); band ends 6262.
+ * Vertical spacing is converted from those baselines for Inter line boxes.
+ * Colours: app/zd-tokens.css only. 768 / 1024 stay provisional (responsive rules).
  */
 
 .footer {
@@ -16,10 +21,11 @@
   --pad: 16px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   max-width: calc(1200px + 2 * var(--pad));
   margin-inline: auto;
-  padding: 38px var(--pad) 45px;
+  padding: 40px var(--pad) 226px;
+  text-align: center;
 }
 
 .brand {
@@ -33,25 +39,19 @@
   height: 34px;
 }
 
-.disclaimer {
-  max-width: var(--zd-reading-max);
-  margin-top: 29px;
-  font-size: 14px;
-  line-height: 20.3px;
-}
-
 .columns {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px 24px;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 30px;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 41px;
 }
 
 .columnTitle {
-  font-size: 14px;
+  color: var(--zd-white);
+  font-size: 15px;
   line-height: 20px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .list {
@@ -59,13 +59,19 @@
   list-style: none;
 }
 
+.list li {
+  display: flex;
+  justify-content: center;
+}
+
+/* Links on the master's 28px pitch; each target is 28px tall. */
 .link {
   display: inline-flex;
   align-items: center;
-  min-height: var(--zd-touch-target);
+  min-height: 28px;
   color: var(--zd-white);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 28px;
   text-decoration: none;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -80,10 +86,23 @@
   font-weight: 700;
 }
 
+/* Divider, boundary statement and copyright. */
+.legal {
+  align-self: stretch;
+  margin: 31px 16px 0;
+  padding-top: 25px;
+  border-top: 1px solid var(--zd-soft-navy);
+}
+
+.disclaimer {
+  font-size: 13px;
+  line-height: 20px;
+}
+
 .copyright {
   margin-top: 40px;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 20px;
 }
 
 .brand:focus-visible,
@@ -92,30 +111,51 @@
   outline-offset: var(--zd-focus-offset);
 }
 
+/* 768: left-aligned, three groups in a row (provisional). */
 @media (min-width: 768px) {
   .inner {
     --pad: 32px;
+    align-items: flex-start;
+    padding-bottom: 56px;
+    text-align: left;
   }
 
   .wordmark {
     width: 160px;
     height: 36px;
   }
+
+  .columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 24px;
+    margin-top: 19px;
+  }
+
+  .list li {
+    justify-content: flex-start;
+  }
+
+  .legal {
+    margin: 29px 0 0;
+  }
+
+  .copyright {
+    margin-top: 30px;
+  }
+
+  .brMobile {
+    display: none;
+  }
 }
 
+/* 1024 and up: groups at the master's 350 / 380 column offsets. */
 @media (min-width: 1024px) {
   .inner {
     --pad: 48px;
-    padding-top: 45px;
-  }
-
-  .disclaimer {
-    margin-top: 20px;
-    line-height: 20px;
   }
 
   .columns {
-    grid-template-columns: repeat(4, minmax(0, 240px));
-    column-gap: 48px;
+    grid-template-columns: 350px 380px minmax(0, 1fr);
+    column-gap: 0;
   }
 }

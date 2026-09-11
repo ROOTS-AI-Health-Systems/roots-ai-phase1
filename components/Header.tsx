@@ -3,15 +3,16 @@
 /**
  * Global header, zone PUB01-Z01.
  *
- * Navigation model: ROOTS written direction ("APPROVED HEADER MODEL", Holly, 10 Sep 2026)
+ * Authority: PUB-01_1440_MASTER_CORRECTED_FINAL.svg / PUB-01_360_MASTER_CORRECTED_FINAL.svg
+ * (v1.2.1, approved C-04/C-05 public shell).
  *   Desktop  logo/Home · How It Works · Platform · Example Report · Research · About · More · Start Your Assessment
  *   More     Healthcare Professionals · Pilot · Blog · Contact
- *   Mobile   logo/Home + menu control; the menu lists Home, the primary and More routes, then the CTA.
+ *   Mobile   logo/Home + hamburger; the menu lists every approved public route, then the CTA.
  *
- * Visual treatment from the v1.2 masters: 72px #1A2A4A band, approved dark-surface
- * wordmark (154 x 34, 145 x 32 at 360), 13px / 500 navigation, 182 x 44 gold action,
- * 44 x 36 outlined menu control. Breakpoints are CSS-only (no width detection in JS),
- * so the server and client render the same markup.
+ * Visual treatment: 72px #1A2A4A band, client-selected logo (37 x 48, ROOTS direction
+ * 11 Sep 2026, replacing the wordmark), 14px / 500 navigation, 220 x 44 white action with 14px / 600 navy label,
+ * 44 x 44 hamburger (three 24 x 3 bars on a 5% white fill). Breakpoints are CSS-only
+ * (no width detection in JS), so the server and client render the same markup.
  */
 
 import Link from 'next/link';
@@ -36,18 +37,29 @@ const MORE_NAV: NavItem[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
-/** Mobile menu order, exactly as directed. */
-const DRAWER_NAV: NavItem[] = [{ label: 'Home', href: '/' }, ...PRIMARY_NAV, ...MORE_NAV];
+/** Mobile menu order, exactly as the 360 corrected master's data-items. */
+const DRAWER_NAV: NavItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'Platform', href: '/platform' },
+  { label: 'Research', href: '/research' },
+  { label: 'Healthcare Professionals', href: '/healthcare-professionals' },
+  { label: 'Example Report', href: '/example-report' },
+  { label: 'About', href: '/about' },
+  { label: 'Pilot Program', href: '/pilot' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Blog', href: '/blog' },
+];
 
 const CTA: NavItem = { label: 'Start Your Assessment', href: '/assessment' };
 
-/** Paths from the approved icon-menu.svg, inlined so the icon takes currentColor. */
+/** Hamburger bars as drawn in the 360 corrected master (#hamburger), in the 44 x 44 control. */
 function IconMenu() {
   return (
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
-      <rect x="2" y="4" width="20" height="2" rx="1" fill="currentColor" />
-      <rect x="2" y="11" width="20" height="2" rx="1" fill="currentColor" />
-      <rect x="2" y="18" width="20" height="2" rx="1" fill="currentColor" />
+    <svg viewBox="0 0 44 44" width="44" height="44" aria-hidden="true" focusable="false">
+      <rect x="10" y="11" width="24" height="3" rx="1.5" fill="currentColor" />
+      <rect x="10" y="19" width="24" height="3" rx="1.5" fill="currentColor" />
+      <rect x="10" y="27" width="24" height="3" rx="1.5" fill="currentColor" />
     </svg>
   );
 }
@@ -62,11 +74,12 @@ function IconClose() {
 }
 
 function Wordmark() {
-  // Header logo supplied in public/logo.png, cropped to its artwork and sized for the
-  // 72px band (public/brand/roots-logo-header.png). The approved v1.2 wordmark is
-  // still at /brand/ROOTS-wordmark-dark.svg if the approved asset is required.
+  // Client-selected logo (public/logo.svg, 11 Sep 2026). public/brand/roots-logo.svg is the
+  // same file with only the viewBox cropped to the artwork, so it fills the header slot.
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src="/brand/roots-logo-header.png" alt="ROOTS-AI™" className={styles.wordmark} />;
+  return (
+    <img src="/brand/roots-logo.svg" alt="ROOTS-AI™" width={37} height={48} className={styles.wordmark} />
+  );
 }
 
 const FOCUSABLE = 'a[href], button:not([disabled]):not([tabindex="-1"])';
@@ -101,9 +114,10 @@ export default function Header() {
     setMoreOpen(false);
   }, [pathname]);
 
-  // The drawer exists below 1024 only; close it if the viewport grows past that.
+  // The drawer exists below 1440 only (at 1024 the 14px navigation does not fit, so the
+  // responsive rules' menu treatment continues); close it if the viewport grows past that.
   useEffect(() => {
-    const desktop = window.matchMedia('(min-width: 1024px)');
+    const desktop = window.matchMedia('(min-width: 1440px)');
     const onChange = () => desktop.matches && setDrawerOpen(false);
     desktop.addEventListener('change', onChange);
     return () => desktop.removeEventListener('change', onChange);

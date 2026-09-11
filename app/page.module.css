@@ -45,19 +45,19 @@
 /* ============================================================
    Shared type
    ============================================================ */
+/* Eyebrows: label size 14/20 (typography spec). On light surfaces the master's gold
+   (2.26:1) and teal (3.58:1) fail the 4.5:1 text contrast, so both use the accessible
+   pairing --zd-eyebrow-on-light (soft navy, 10.5:1). Gold stays on dark surfaces. */
 .eyebrow {
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.eyebrowTeal {
-  color: var(--zd-teal);
-}
-
+.eyebrowTeal,
 .eyebrowGold {
-  color: var(--zd-gold);
+  color: var(--zd-eyebrow-on-light);
 }
 
 .title {
@@ -95,10 +95,6 @@
 }
 
 @media (min-width: 768px) {
-  .eyebrow {
-    font-size: 13px;
-  }
-
   .title {
     margin-top: 17px;
     font-size: 32px;
@@ -121,12 +117,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: var(--zd-button-min-width);
   height: var(--zd-control-height);
-  padding: 0 16px;
+  padding: 0 24px;
   border-radius: var(--zd-radius-button);
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 700;
+  /* Buttons: 16/24, weight 600 (typography spec). */
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
@@ -202,10 +200,11 @@
   grid-area: copy;
 }
 
+/* Label 14/20 (typography spec); gold on navy measures 6.03:1. */
 .heroEyebrow {
   color: var(--zd-gold);
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -225,10 +224,12 @@
   line-height: 24px;
 }
 
+/* 360: the full 328px content width (master 264px), so the in-graphic text can reach
+   the 12px minimum without changing the composition. */
 .heroSystem {
   grid-area: system;
   justify-self: center;
-  width: 264px;
+  width: 328px;
   max-width: 100%;
   margin-top: 77px;
 }
@@ -242,7 +243,6 @@
 
 .heroPrimary {
   width: 100%;
-  font-size: 15px;
 }
 
 .heroSecondary {
@@ -258,11 +258,6 @@
       'system';
     padding-top: 72px;
     padding-bottom: 64px;
-  }
-
-  .heroEyebrow {
-    font-size: 13px;
-    line-height: 16px;
   }
 
   .heroTitle {
@@ -283,14 +278,13 @@
     margin-top: 48px;
   }
 
+  /* Width follows the 16px label (typography spec) instead of the master's 190 / 172px. */
   .heroPrimary {
-    width: 190px;
-    font-size: 14px;
+    width: auto;
   }
 
   .heroSecondary {
     display: inline-flex;
-    width: 172px;
   }
 
   .heroSystem {
@@ -410,7 +404,7 @@
 }
 
 .domainsSystem {
-  width: 298px;
+  width: 328px;
   max-width: 100%;
   margin: 146px auto 0;
 }
@@ -447,7 +441,7 @@
   gap: 8px;
   padding-left: 8px;
   color: var(--zd-soft-navy);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 45px;
   font-weight: 600;
 }
@@ -482,7 +476,7 @@
     align-items: center;
     justify-content: center;
     min-height: 96px;
-    line-height: 20px;
+    line-height: 24px;
     text-align: center;
   }
 }
@@ -516,13 +510,12 @@
   font-weight: 700;
 }
 
-/* 240px reproduces the 360 master's line grouping at 13px (valid range 235–246). */
+/* Primary content: never below 16px (typography spec), overriding the master's 13–14px. */
 .featureBody {
-  max-width: 240px;
-  margin-top: 9px;
+  margin-top: 8px;
   color: var(--zd-muted);
-  font-size: 13px;
-  line-height: 18.2px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @media (min-width: 768px) {
@@ -565,10 +558,6 @@
     line-height: 24px;
   }
 
-  .featureBody {
-    font-size: 14px;
-    line-height: 19.6px;
-  }
 }
 
 /* ============================================================
@@ -628,9 +617,10 @@
 .stepNum {
   grid-column: 1;
   grid-row: 1;
-  color: var(--zd-gold);
-  font-size: 12px;
-  line-height: 16px;
+  /* Label 14/20; soft navy for 4.5:1 on white (the master's gold measures 2.36:1). */
+  color: var(--zd-eyebrow-on-light);
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 700;
 }
 
@@ -648,8 +638,8 @@
   grid-row: 2;
   margin-top: 11px;
   color: var(--zd-muted);
-  font-size: 14px;
-  line-height: 20.3px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .stepConnector {
@@ -743,8 +733,8 @@
 
 .reportLabel {
   color: var(--zd-gold);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -771,8 +761,8 @@
 .reportStatus {
   margin-top: 11px;
   color: var(--zd-strained);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -820,11 +810,12 @@
   transform-origin: left center;
 }
 
+/* Boundary statement: 16/26 (legal minimum), overriding the master's 13–14px. */
 .reportNote {
   margin-top: auto;
   padding-top: 24px;
-  font-size: 13px;
-  line-height: 18.2px;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .reportMessage {
@@ -868,10 +859,6 @@
     row-gap: 40px;
   }
 
-  .reportLabel {
-    font-size: 13px;
-  }
-
   .reportScore {
     margin-top: 25px;
   }
@@ -889,7 +876,6 @@
 
   .reportStatus {
     margin-top: 14px;
-    font-size: 15px;
   }
 
   .metrics {
@@ -919,8 +905,6 @@
 
   .reportNote {
     padding-top: 48px;
-    font-size: 14px;
-    line-height: 20px;
     font-weight: 500;
   }
 }
@@ -978,14 +962,13 @@
   background: var(--zd-white);
 }
 
-/* 262px reproduces the 360 master's six-line grouping at 14px. */
+/* Primary content: 16/26 (typography spec), overriding the 360 master's 14px. */
 .pilotBody {
-  max-width: 262px;
   margin-top: 19px;
   margin-bottom: 32px;
   color: var(--zd-muted);
-  font-size: 14px;
-  line-height: 20.3px;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .pilotCta {
@@ -1014,7 +997,7 @@
   }
 
   .pilotCta {
-    width: 150px;
+    width: auto;
     margin-top: 39px;
   }
 }
@@ -1105,6 +1088,66 @@
   opacity: 0.22;
 }
 
+/* In-graphic text: never below 12px on screen (typography spec). SVG text scales with
+   the system, so each size is divided by --s, the rendered scale (system width / 560). */
+.heroSystem,
+.domainsSystem {
+  --s: 0.5857; /* 328 / 560 */
+}
+
+.lbisCode,
+.lbisLabel,
+.lbisCoreEyebrow,
+.lbisCoreReading {
+  font-size: calc(12px / var(--s, 1));
+}
+
+.lbisCoreTitle {
+  font-size: max(28px, calc(20px / var(--s, 1)));
+}
+
+/* Below 768 the node labels and the core eyebrow cannot reach 12px without colliding;
+   the full domain names stay available in the tap card and to assistive technology. */
+.lbisLabel,
+.lbisCoreEyebrow {
+  display: none;
+}
+
+/* Below 768, with the eyebrow hidden, STATE returns to the master's 28-unit size
+   (16.4px on screen). The stack moves up so the 12px reading clears the gold ring. */
+.lbisCoreTitle {
+  font-size: 28px;
+  transform: translateY(-11px);
+}
+
+.lbisCoreReading {
+  transform: translateY(-13px);
+}
+
+@media (min-width: 768px) {
+  .lbisCoreTitle {
+    font-size: max(28px, calc(20px / var(--s, 1)));
+  }
+
+  .lbisCoreTitle,
+  .lbisCoreReading {
+    transform: none;
+  }
+
+  .heroSystem {
+    --s: 0.7893; /* 442 / 560 */
+  }
+
+  .domainsSystem {
+    --s: 0.9857; /* 552 / 560 */
+  }
+
+  .lbisLabel,
+  .lbisCoreEyebrow {
+    display: inline;
+  }
+}
+
 .domainTip {
   position: absolute;
   z-index: 5;
@@ -1113,7 +1156,8 @@
   padding: 14px 16px;
   border: 1px solid var(--zd-teal);
   border-radius: var(--zd-radius-card);
-  background: var(--zd-soft-navy);
+  /* Navy (not soft navy) so the gold code label reaches 6.03:1 (4.45:1 on soft navy). */
+  background: var(--zd-navy);
   color: var(--zd-white);
   box-shadow: var(--zd-shadow-dropdown);
   text-align: left;
@@ -1122,8 +1166,8 @@
 
 .domainTipCode {
   color: var(--zd-gold);
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1139,8 +1183,8 @@
 .domainTipBody {
   margin-top: 4px;
   color: var(--zd-border);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @keyframes orbitSpin {
