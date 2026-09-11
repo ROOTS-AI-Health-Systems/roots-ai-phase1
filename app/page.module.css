@@ -94,6 +94,15 @@
   line-height: 33px;
 }
 
+/* Wordmark inside the pilot title. Its letters take 20 of the SVG's 30 units, so 1.05em
+   matches the cap height; -0.175em sets the letters on the text baseline. */
+.titleWordmark {
+  display: inline-block;
+  width: auto;
+  height: 1.05em;
+  vertical-align: -0.175em;
+}
+
 @media (min-width: 768px) {
   .title {
     margin-top: 17px;
@@ -313,9 +322,11 @@
     column-gap: 32px;
   }
 
+  /* Raised 48px above centre (ROOTS direction, 11 Sep 2026). */
   .heroSystem {
     align-self: center;
     margin-top: 0;
+    transform: translateY(-48px);
   }
 }
 
@@ -403,22 +414,35 @@
   stroke-width: 4;
 }
 
+/* Holds the seven-domains image: larger and raised (ROOTS direction, 11 Sep 2026). */
 .domainsSystem {
-  width: 328px;
+  width: 100%;
   max-width: 100%;
-  margin: 146px auto 0;
+  margin: 72px auto 0;
+}
+
+/* Seven-domains image (ROOTS direction, 11 Sep 2026), in place of the orbital system;
+   it fills the system's slot at its own aspect ratio. */
+.domainsImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* The image carries its own navy (recoloured to --zd-navy): seamless in the hero, a
+     rounded panel on the light Z05 section, like the orbital system's panel before it. */
+  border-radius: 16px;
 }
 
 @media (min-width: 768px) {
   .domainsSystem {
-    width: 552px;
-    margin-top: 32px;
+    width: 680px;
+    margin-top: 16px;
   }
 }
 
 @media (min-width: 1024px) {
   .domainsSystem {
-    margin-top: 22px;
+    width: 960px;
+    margin-top: 8px;
   }
 }
 

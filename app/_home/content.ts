@@ -56,6 +56,10 @@ export const DOMAINS_HEADING = {
   title: 'One biological intelligence framework',
 };
 
+/** Text alternative for the seven-domains image (_home/seven-domains.png), from its own labels. */
+export const DOMAINS_IMAGE_ALT =
+  'The seven biological domains connected to a human figure: Hunger & Appetite (signals, reward, eating behaviour), Metabolism (energy, insulin, storage), Safety & Immunity (inflammation, defense, repair), Inflammation (microbiome, gut barrier, systemic signals), Sleep & Recovery (rhythms, hormones, restoration), Circadian Timing (biological clock, hormonal rhythm) and Stress Response (HPA axis, resilience, adaptation). “The body is not a collection of parts, but a network of conversations.”';
+
 /** Centre of the signature system: the Biological State reading. */
 export const CORE = {
   reading: '61 / 100 · STRAINED',
@@ -216,7 +220,9 @@ export const REPORT_HEADING = {
 export const PILOT = {
   eyebrow: 'Pilot program',
   // Line grouping from the 360 master; one line at 1440.
-  title: ['Join the ROOTS-AI™', 'Free Beta'] as const,
+  // The middle part is drawn as the approved wordmark, with this text as its alt (ROOTS
+  // direction, 11 Sep 2026).
+  title: ['Join the', 'ROOTS-AI™', 'Free Beta'] as const,
   body: 'The beta explores whether a structured, non-diagnostic assessment can help people understand self-reported patterns involving weight resistance, energy, sleep, stress and appetite.',
   cta: { label: 'Check Eligibility', href: '/pilot' },
   /** Governed eligibility and boundary statements (contract Z08). */

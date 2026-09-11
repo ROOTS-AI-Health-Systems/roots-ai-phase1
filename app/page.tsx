@@ -11,13 +11,17 @@
  */
 
 import type { CSSProperties } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 import ExampleReport from './_home/ExampleReport';
 import LivingSystem from './_home/LivingSystem';
 import RevealObserver from './_home/RevealObserver';
+// ROOTS direction, 11 Sep 2026: the hero keeps the orbital Living System; Z05 shows this image.
+import sevenDomains from './_home/seven-domains.png';
 import {
   DOMAINS_HEADING,
+  DOMAINS_IMAGE_ALT,
   FEATURES,
   FEATURES_HEADING,
   HERO,
@@ -111,7 +115,12 @@ export default function Home() {
             {DOMAINS_HEADING.title}
           </h2>
           <div className={styles.domainsSystem}>
-            <LivingSystem wake="view" />
+            <Image
+              src={sevenDomains}
+              alt={DOMAINS_IMAGE_ALT}
+              className={styles.domainsImage}
+              sizes="(min-width: 1024px) 960px, (min-width: 768px) 680px, 100vw"
+            />
           </div>
         </div>
       </section>
@@ -168,8 +177,12 @@ export default function Home() {
             <p className={`${styles.eyebrow} ${styles.eyebrowTeal}`}>{PILOT.eyebrow}</p>
             <h2 id="pilot-title" className={`${styles.title} ${styles.titlePilot}`}>
               {PILOT.title[0]}{' '}
+              {/* Approved light-background wordmark (02_APPROVED_FOUNDATION/brand/ROOTS-wordmark.svg,
+                  served byte-identical); its alt keeps the heading's accessible name. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/ROOTS-wordmark.svg" alt={PILOT.title[1]} className={styles.titleWordmark} />{' '}
               <br className={styles.brMobile} />
-              {PILOT.title[1]}
+              {PILOT.title[2]}
             </h2>
             <p className={styles.pilotBody}>{PILOT.body}</p>
             {/* Governed eligibility and boundary statements (contract Z08). */}

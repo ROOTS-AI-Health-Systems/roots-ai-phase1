@@ -9,6 +9,9 @@
  *         baseline 5290, 30px between groups); divider 32-328 at 5870; boundary 13/20
  *         on three lines (5910); copyright 12/20 on two lines (6010); band ends 6262.
  * Vertical spacing is converted from those baselines for Inter line boxes.
+ * ROOTS direction (Holly, 11 Sep 2026) overrides the master where they differ:
+ * boundary statement and copyright are legal text at 16/26, and every link has a
+ * 44 x 44 target (so link rows sit on a 44px pitch, not the master's 28px).
  * Colours: app/zd-tokens.css only. 768 / 1024 stay provisional (responsive rules).
  */
 
@@ -54,8 +57,8 @@
   font-weight: 700;
 }
 
+/* No top margin: the 44px target keeps the first link baseline 32px below the title's. */
 .list {
-  margin-top: 8px;
   list-style: none;
 }
 
@@ -64,14 +67,16 @@
   justify-content: center;
 }
 
-/* Links on the master's 28px pitch; each target is 28px tall. */
+/* 14px links (master) with the approved 44 x 44 minimum target. */
 .link {
   display: inline-flex;
   align-items: center;
-  min-height: 28px;
+  justify-content: center;
+  min-width: var(--zd-touch-target);
+  min-height: var(--zd-touch-target);
   color: var(--zd-white);
   font-size: 14px;
-  line-height: 28px;
+  line-height: 20px;
   text-decoration: none;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -94,15 +99,16 @@
   border-top: 1px solid var(--zd-soft-navy);
 }
 
+/* Legal text: 16/26 minimum (typography spec), above the master's 13px / 12px. */
 .disclaimer {
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .copyright {
   margin-top: 40px;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .brand:focus-visible,
@@ -135,16 +141,17 @@
     justify-content: flex-start;
   }
 
+  /* Left-aligned text; short labels extend their target to the right. */
+  .link {
+    justify-content: flex-start;
+  }
+
   .legal {
     margin: 29px 0 0;
   }
 
   .copyright {
     margin-top: 30px;
-  }
-
-  .brMobile {
-    display: none;
   }
 }
 

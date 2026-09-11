@@ -82,12 +82,8 @@ export default function Footer() {
             ROOTS-AI™ provides educational wellness information and does not diagnose or treat medical
             conditions.
           </p>
-          {/* The 360 master sets the copyright on two lines. */}
-          <p className={styles.copyright}>
-            © 2026 ROOTS AI HEALTH SYSTEMS, Inc.{' '}
-            <br className={styles.brMobile} />
-            All rights reserved.
-          </p>
+          {/* Wraps naturally: at the 16px legal size the master's forced break left "Inc." alone. */}
+          <p className={styles.copyright}>© 2026 ROOTS AI HEALTH SYSTEMS, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

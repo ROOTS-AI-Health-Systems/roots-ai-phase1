@@ -3,8 +3,51 @@
 // Inner-page design copied from clonedwebsite/app/assessment/[sessionId]/module/[moduleId]/page.tsx; styles scoped in app/clone-pages.css.
 
 import { useParams } from 'next/navigation';
-import type { FormEvent } from 'react';
-import { MODULES, answersKey, type Question } from '@/lib/roots/assessment';
+import { useState, type FormEvent } from 'react';
+import { MODULES, answersKey, type AssessmentModule, type Question } from '@/lib/roots/assessment';
+
+/**
+ * Mirrors a module's answers to the backend (ported from apps/web) and, after the last module,
+ * submits the assessment. Best effort: the answers are already in sessionStorage, which the
+ * report page reads, so a failed save (for example a session started without sign-in) does
+ * not block the assessment.
+ */
+async function saveToServer(
+  sessionId: string,
+  moduleIndex: number,
+  assessmentModule: AssessmentModule,
+  answers: Record<string, number>,
+  submit: boolean
+) {
+  const post = (url: string, body: unknown) =>
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(body),
+    });
+
+  try {
+    // One at a time: each save rewrites the session's answers_json, so parallel saves would drop answers.
+    for (const [questionIndex, question] of assessmentModule.questions.entries()) {
+      if (answers[question.id] === undefined) continue;
+      const response = await post('/api/assessments/responses', {
+        sessionId,
+        moduleId: moduleIndex + 1,
+        questionId: questionIndex + 1,
+        answer: { questionKey: question.id, value: answers[question.id] },
+      });
+      if (!response.ok) throw new Error(`Saving ${question.id} failed (${response.status})`);
+    }
+
+    if (submit) {
+      const response = await post('/api/assessments/submit', { sessionId });
+      if (!response.ok) throw new Error(`Submitting failed (${response.status})`);
+    }
+  } catch (error) {
+    console.warn('Answers kept in this browser only:', error);
+  }
+}
 
 function QuestionField({ question, defaultValue }: { question: Question; defaultValue?: number }) {
   const options =
@@ -65,6 +108,7 @@ function ProgressBar({ current, total, className }: { current: number; total: nu
 
 export default function AssessmentModulePage() {
   const { sessionId, moduleId } = useParams<{ sessionId: string; moduleId: string }>();
+  const [saving, setSaving] = useState(false);
   const activeModule = MODULES.find((m) => m.id === moduleId);
 
   if (!activeModule) {
@@ -81,7 +125,7 @@ export default function AssessmentModulePage() {
   const index = MODULES.findIndex((m) => m.id === activeModule.id);
   const isLast = activeModule.id === MODULES.at(-1)?.id;
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const answers: Record<string, number> = {
@@ -92,6 +136,9 @@ export default function AssessmentModulePage() {
       if (value) answers[question.id] = Number(value);
     });
     sessionStorage.setItem(answersKey(sessionId), JSON.stringify(answers));
+
+    setSaving(true);
+    await saveToServer(sessionId, index, activeModule!, answers, isLast);
 
     const next = MODULES[index + 1];
     window.location.assign(next ? `/assessment/${sessionId}/module/${next.id}` : `/report/${sessionId}`);
@@ -108,7 +155,7 @@ export default function AssessmentModulePage() {
         {activeModule.questions.map((question) => (
           <QuestionField key={question.id} question={question} />
         ))}
-        <button className="continue-button" type="submit">
+        <button className="continue-button" type="submit" disabled={saving}>
           {isLast ? 'View my report →' : 'Continue →'}
         </button>
       </form>
